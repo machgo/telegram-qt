@@ -81,6 +81,7 @@ protected slots:
     void onFileRequestFinished(quint32 requestId, Telegram::RemoteFile info);
     void onUserNameStatusUpdated(const QString &userName, TelegramNamespace::UserNameStatus status);
 
+    void onSearchComplete(const QString &query, const QVector<Telegram::Peer> &peers);
     void onCustomMenuRequested(const QPoint &pos);
     void onSearchCustomMenuRequested(const QPoint &pos);
 
@@ -146,11 +147,12 @@ private slots:
     void updateGroupChatAddContactButtonText();
 
     void on_groupChatLeaveChat_clicked();
-
+    void on_searchContacts_clicked();
     void on_findContact_clicked();
     void setUiProxyEnabled(bool enabled);
 
 private:
+    void searchByQuery();
     void searchByUsername();
     void setRegistered(bool newRegistered);
     void setChatCreationMode();

@@ -3680,9 +3680,18 @@ void CTelegramConnection::processContactsResolveUsername(RpcProcessingContext *c
 
 void CTelegramConnection::processContactsSearch(RpcProcessingContext *context)
 {
-    qWarning() << Q_FUNC_INFO << "Is not implemented yet";
     TLContactsFound result;
     context->readRpcResult(&result);
+    if (!result.isValid()) {
+        return;
+    }
+
+    CTelegramStream stream(context->requestData());
+    TLValue value;
+    QString query;
+    stream >> value;
+    stream >> query;
+    emit contactsFound(query, result);
 }
 
 void CTelegramConnection::processContactsUnblock(RpcProcessingContext *context)

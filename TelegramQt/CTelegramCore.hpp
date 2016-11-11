@@ -113,6 +113,7 @@ public Q_SLOTS:
 
     bool requestHistory(const Telegram::Peer &peer, int offset, int limit);
 
+    quint64 searchContacts(const QString &query);
     quint32 resolveUsername(const QString &userName);
 
     // Does not work yet
@@ -164,6 +165,8 @@ Q_SIGNALS:
     void contactStatusChanged(quint32 userId, TelegramNamespace::ContactStatus status);
     void contactMessageActionChanged(quint32 userId, TelegramNamespace::MessageAction action);
     void contactChatMessageActionChanged(quint32 chatId, quint32 userId, TelegramNamespace::MessageAction action);
+
+    void searchComplete(const QString &query, const QVector<Telegram::Peer> &peers);
 
     void sentMessageIdReceived(quint64 randomId, quint32 resolvedId);
     void messageReadInbox(Telegram::Peer peer, quint32 messageId);

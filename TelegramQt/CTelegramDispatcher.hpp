@@ -113,6 +113,7 @@ public:
     void closeConnection();
 
     bool requestHistory(const Telegram::Peer &peer, quint32 offset, quint32 limit);
+    quint64 searchContacts(const QString &query);
     quint32 resolveUsername(const QString &userName);
 
     quint64 sendMessage(const Telegram::Peer &peer, const QString &message);
@@ -182,6 +183,7 @@ signals:
     void contactStatusChanged(quint32 userId, TelegramNamespace::ContactStatus status);
     void contactMessageActionChanged(quint32 userId, TelegramNamespace::MessageAction action);
     void contactChatMessageActionChanged(quint32 chatId, quint32 userId, TelegramNamespace::MessageAction action);
+    void searchComplete(const QString &query, const QVector<Telegram::Peer> &peers);
 
     void sentMessageIdReceived(quint64 randomId, quint32 resolvedId);
     void messageReadInbox(Telegram::Peer peer, quint32 messageId);
@@ -207,6 +209,7 @@ protected slots:
     void onSelfUserReceived(const TLUser &selfUser);
     void onUsersReceived(const QVector<TLUser> &users);
     void onChannelsParticipantsReceived(quint32 channelId, TLVector<TLChannelParticipant> participants);
+    void onContactsFound(const QString &query, const TLContactsFound &result);
 
     void onContactListReceived(const QVector<quint32> &contactIdList);
     void onContactListChanged(const QVector<quint32> &added, const QVector<quint32> &removed);

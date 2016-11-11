@@ -312,6 +312,7 @@ signals:
     void connectionFailed(CTelegramConnection *connection);
     void wantedMainDcChanged(quint32 dc, QString dcForPhoneNumber);
     void newRedirectedPackage(const QByteArray &data, quint32 dc);
+    void contactsFound(const QString &query, const TLContactsFound &result);
 
     void statusChanged(ConnectionStatus status, int reason, quint32 dc);
     void authStateChanged(AuthState status, quint32 dc);

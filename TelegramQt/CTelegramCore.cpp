@@ -89,6 +89,8 @@ CTelegramCore::CTelegramCore(QObject *parent) :
             SIGNAL(contactMessageActionChanged(quint32,TelegramNamespace::MessageAction)));
     connect(m_private->m_dispatcher, SIGNAL(contactChatMessageActionChanged(quint32,quint32,TelegramNamespace::MessageAction)),
             SIGNAL(contactChatMessageActionChanged(quint32,quint32,TelegramNamespace::MessageAction)));
+    connect(m_private->m_dispatcher, SIGNAL(searchComplete(QString,QVector<Telegram::Peer>)),
+            SIGNAL(searchComplete(QString,QVector<Telegram::Peer>)));
     connect(m_private->m_dispatcher, SIGNAL(sentMessageIdReceived(quint64,quint32)),
             SIGNAL(sentMessageIdReceived(quint64,quint32)));
     connect(m_private->m_dispatcher, SIGNAL(messageReadInbox(Telegram::Peer,quint32)),
@@ -254,6 +256,11 @@ quint32 CTelegramCore::requestFile(const Telegram::RemoteFile *file)
 bool CTelegramCore::requestHistory(const Telegram::Peer &peer, int offset, int limit)
 {
     return m_private->m_dispatcher->requestHistory(peer, offset, limit);
+}
+
+quint64 CTelegramCore::searchContacts(const QString &query)
+{
+    return m_private->m_dispatcher->searchContacts(query);
 }
 
 quint32 CTelegramCore::resolveUsername(const QString &userName)
