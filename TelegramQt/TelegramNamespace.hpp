@@ -66,6 +66,13 @@ public:
     };
     Q_DECLARE_FLAGS(MessageTypeFlags, MessageType)
 
+    enum AuthNeeds {
+        AuthNeedsNothing,
+        AuthNeedsAuthCode,
+        AuthNeedsPassword,
+    };
+    Q_ENUM(AuthNeeds)
+
     enum AuthSignError {
         AuthSignErrorUnknown,
         AuthSignErrorAppIdIsInvalid,
