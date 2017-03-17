@@ -49,6 +49,8 @@ equals(BUILD_QML_IMPORT, "true") {
     SUBDIRS += testApp
     CONFIG += ordered
 
+    SUBDIRS += examples/auth-qml
+
     contains(options, developer-build) {
         SUBDIRS += TelegramQt/tests
         SUBDIRS += TelegramQt/generator
