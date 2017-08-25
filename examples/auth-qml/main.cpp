@@ -146,9 +146,12 @@ static QObject *them_type_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
     return theme;
 }
 
+#include <QQuickStyle>
+
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    QQuickStyle::setStyle("Material");
 
     QQmlApplicationEngine engine;
     qmlRegisterSingletonType<Theme>("TelegramQtTheme", 1, 0, "Theme", them_type_provider);
