@@ -789,6 +789,9 @@ QList<TLType> GeneratorNG::solveTypes(QMap<QString, TLType> types, QMap<QString,
                         // Is native, so is solved
                         continue;
                     }
+                    if (dependence == item) {
+                        continue;
+                    }
                     solved = false;
                 }
                 if (solved) {
