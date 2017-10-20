@@ -1020,6 +1020,7 @@ bool GeneratorNG::loadFromText(const QByteArray &data)
             tlSubType.name = predicateName;
             tlSubType.id = predicateId;
             tlSubType.members.append(tlParams);
+            tlSubType.source = line;
 
             tlType.subTypes.append(tlSubType);
             m_types.insert(typeName, tlType);
@@ -1035,6 +1036,7 @@ bool GeneratorNG::loadFromText(const QByteArray &data)
             tlMethod.id = predicateId;
             tlMethod.type = typeName;
             tlMethod.params.append(tlParams);
+            tlMethod.source = line;
 
             m_functions.insert(functionName, tlMethod);
         }
